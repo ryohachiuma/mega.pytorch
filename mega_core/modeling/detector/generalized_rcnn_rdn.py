@@ -75,7 +75,7 @@ class GeneralizedRCNNRDN(nn.Module):
     def _forward_train(self, img_cur, imgs_ref, targets):
         concat_imgs = torch.cat([img_cur.tensors, *[img_ref.tensors for img_ref in imgs_ref]], dim=0)
         concat_feats = self.backbone(concat_imgs)[0]
-
+        
         num_imgs = 1 + len(imgs_ref)
 
         feats_list = torch.chunk(concat_feats, num_imgs, dim=0)
